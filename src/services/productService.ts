@@ -28,3 +28,34 @@ export const addProduct = async (name: string, stock: number, price: number) => 
 
   return newProduct;
 };
+
+export const deleteProduct = async (id: string) => {
+  
+  const deletedProduct = await Product.findByIdAndDelete(id);
+
+  if (!deletedProduct) {
+    throw new AppError('ไม่พบสินค้าที่ต้องการลบ', 404);
+  }
+
+  return {
+    product: deletedProduct
+  };
+};
+
+export const readProduct = async () => {
+   
+  const products = await Product.find()
+
+  return {products}
+}
+
+export const updateProduct = async (id:string , updateData:object) => {
+
+  const product = await Product.findByIdAndUpdate(id , updateData , {new:true , runValidators: true})
+
+  if(!product) throw new AppError("ไม่พบสิน้ค้า" , 404)
+
+    return {
+      product
+    }
+}
