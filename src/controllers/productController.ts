@@ -46,11 +46,11 @@ export const deleteProduct = async (req:Request , res:Response , next:NextFuncti
 
     try{
 
-        const id = req.body.params
+        const { id } = req.params
 
         if(!id) throw new AppError('id is required' ,400 ) 
 
-        const { product } = await productService.deleteProduct(id)
+        const { product } = await productService.deleteProduct(id as string)
 
         return res.status(200).json({
             success:true,

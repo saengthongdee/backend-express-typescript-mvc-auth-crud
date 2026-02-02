@@ -11,6 +11,7 @@ import { connectDB } from './config/db.js'
 //router
 import productRoutes from './routes/productRoutes.js'
 import authRoutes from './routes/authRoutes.js'
+
 const app = express()
 
 app.use(express.json())
